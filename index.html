@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>João Azevedo — Estrategista de Marketing</title>
+<meta name="description" content="Transforme os dados da sua empresa em faturamento. Estratégia, rastreamento e gestão de tráfego para e-commerces que querem crescer de forma consistente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0E12;
+  --panel:#10161D;
+  --panel-2:#141C25;
+  --line:rgba(170,190,210,.12);
+  --text:#E9EDF2;
+  --muted:#93A0AE;
+  --accent:#E2A14E;        /* cobre / âmbar */
+  --accent-soft:rgba(226,161,78,.14);
+  --pos:#5BD9A1;           /* delta positivo, uso pontual */
+  --display:'Bricolage Grotesque',sans-serif;
+  --body:'Instrument Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--accent);color:var(--ink)}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:96px 0;position:relative}
+
+/* ---------- eyebrow / labels ---------- */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+.eyebrow::before{
+  content:"";
+  width:24px;height:1px;
+  background:var(--accent);
+  display:inline-block;
+}
+
+h1,h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.08}
+h1{font-size:clamp(2.4rem,5.4vw,4.2rem)}
+h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-bottom:20px}
+.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--muted);max-width:560px}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--body);font-weight:600;font-size:1rem;
+  padding:16px 30px;border-radius:10px;
+  text-decoration:none;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+  cursor:pointer;
+}
+.btn-primary{
+  background:var(--accent);color:var(--ink);
+  box-shadow:0 0 0 0 rgba(226,161,78,0);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px -8px rgba(226,161,78,.45)}
+.btn-ghost{
+  border:1px solid var(--line);color:var(--text);
+  background:rgba(255,255,255,.02);
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn .arrow{transition:transform .18s ease}
+.btn:hover .arrow{transform:translateX(4px)}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  backdrop-filter:blur(14px);
+  background:rgba(10,14,18,.72);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1080px;margin:0 auto;padding:14px 24px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.logo{
+  font-family:var(--display);font-weight:800;font-size:1.05rem;
+  color:var(--text);text-decoration:none;letter-spacing:-.01em;
+}
+.logo span{color:var(--accent)}
+.nav-cta{
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  border:1px solid rgba(226,161,78,.35);border-radius:8px;padding:9px 16px;
+  transition:background .18s,color .18s;
+}
+.nav-cta:hover{background:var(--accent);color:var(--ink)}
+
+/* ---------- hero ---------- */
+#hero{
+  min-height:100svh;
+  display:flex;align-items:center;
+  padding:140px 0 80px;
+  background:
+    radial-gradient(1100px 520px at 78% 18%, rgba(226,161,78,.09), transparent 60%),
+    radial-gradient(800px 500px at 10% 90%, rgba(91,217,161,.05), transparent 60%),
+    var(--ink);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;
+}
+.hero-copy h1 em{font-style:normal;color:var(--accent)}
+.hero-copy .lead{margin:24px 0 36px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.hero-note{
+  margin-top:22px;font-family:var(--mono);font-size:.75rem;color:var(--muted);
+  letter-spacing:.06em;
+}
+
+/* mini-dashboard card */
+.dash{
+  background:linear-gradient(160deg,var(--panel-2),var(--panel));
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:26px;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.6);
+}
+.dash-head{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--pos);display:inline-block;margin-right:8px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.dash-metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.metric{
+  background:rgba(255,255,255,.025);
+  border:1px solid var(--line);
+  border-radius:10px;padding:16px;
+}
+.metric .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.metric .v{font-family:var(--display);font-weight:800;font-size:1.5rem;margin-top:6px}
+.metric .d{font-family:var(--mono);font-size:.72rem;color:var(--pos);margin-top:4px}
+.dash-spark{margin-top:18px}
+.dash-spark svg{display:block;width:100%}
+
+/* ---------- problema ---------- */
+#problema{border-top:1px solid var(--line)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.problema-body p{color:var(--muted);margin-bottom:18px;font-size:1.06rem}
+.problema-body .punch{
+  color:var(--text);font-weight:600;font-size:1.15rem;
+  border-left:3px solid var(--accent);padding-left:18px;
+}
+
+/* ---------- posicionamento ---------- */
+#posicionamento{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pos-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.foto{
+  aspect-ratio:4/5;
+  border-radius:16px;
+  background:
+    linear-gradient(180deg,rgba(226,161,78,.08),rgba(226,161,78,.02)),
+    var(--panel-2);
+  border:1px dashed rgba(226,161,78,.35);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:10px;
+  color:var(--muted);font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;
+  text-align:center;padding:24px;
+  overflow:hidden;
+}
+.foto img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+.pos-body p{color:var(--muted);margin-bottom:18px;font-size:1.06rem}
+.pos-body strong{color:var(--text)}
+.cred{
+  display:flex;gap:28px;flex-wrap:wrap;margin-top:28px;
+}
+.cred div{display:flex;flex-direction:column;gap:2px}
+.cred .n{font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--accent)}
+.cred .l{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- entregáveis ---------- */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:48px}
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:28px;
+  transition:border-color .2s,transform .2s;
+}
+.card:hover{border-color:rgba(226,161,78,.45);transform:translateY(-3px)}
+.card:last-child{grid-column:1/-1}
+.card .icon{
+  width:44px;height:44px;border-radius:10px;
+  background:var(--accent-soft);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;
+}
+.card .icon svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-family:var(--display);font-weight:600;font-size:1.2rem;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.98rem}
+
+/* ---------- case ---------- */
+#case{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.case-head{max-width:640px;margin-bottom:56px}
+.case-head .sub{color:var(--muted);font-size:1.1rem;margin-top:6px}
+.case-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:56px;
+}
+.stat{
+  background:var(--panel-2);border:1px solid var(--line);border-radius:14px;
+  padding:24px 20px;text-align:left;
+}
+.stat .n{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(1.8rem,3vw,2.4rem);color:var(--accent);
+  line-height:1;
+}
+.stat .l{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:10px;display:block}
+.chart-box{
+  background:var(--panel-2);border:1px solid var(--line);border-radius:16px;
+  padding:32px 28px 20px;margin-bottom:48px;
+}
+.chart-box .chart-label{
+  display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:18px;
+}
+#growthChart{width:100%;display:block}
+#growthChart .axis{stroke:rgba(170,190,210,.15);stroke-width:1}
+#growthChart .grid{stroke:rgba(170,190,210,.06);stroke-width:1}
+#growthChart .line{
+  fill:none;stroke:var(--accent);stroke-width:2.5;
+  stroke-dasharray:1200;stroke-dashoffset:1200;
+}
+#growthChart .area{fill:url(#gradArea);opacity:0;transition:opacity .8s ease .9s}
+#growthChart .pt{fill:var(--accent);opacity:0;transition:opacity .4s ease}
+#growthChart .pt-label{font-family:var(--mono);font-size:11px;fill:var(--muted);opacity:0;transition:opacity .4s ease}
+#growthChart .pt-bf{fill:var(--pos)}
+#growthChart.drawn .line{animation:draw 2.2s ease forwards}
+#growthChart.drawn .area{opacity:1}
+#growthChart.drawn .pt,#growthChart.drawn .pt-label{opacity:1}
+@keyframes draw{to{stroke-dashoffset:0}}
+.case-body{max-width:680px}
+.case-body p{color:var(--muted);margin-bottom:18px;font-size:1.06rem}
+.case-body .punch{color:var(--text);font-weight:600}
+.case-cta{margin-top:36px}
+
+/* ---------- cta final ---------- */
+#final{text-align:center;padding:130px 0}
+#final h2{font-size:clamp(2rem,4.4vw,3.2rem);max-width:760px;margin:0 auto 22px}
+#final p{color:var(--muted);max-width:560px;margin:0 auto 40px;font-size:1.1rem}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:40px 0}
+.foot{
+  display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.foot .who{font-family:var(--mono);font-size:.75rem;color:var(--muted);letter-spacing:.06em}
+.foot .links{display:flex;gap:22px}
+.foot a{
+  color:var(--muted);text-decoration:none;font-size:.92rem;
+  transition:color .18s;
+}
+.foot a:hover{color:var(--accent)}
+
+/* ---------- reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  #growthChart .line{stroke-dashoffset:0;animation:none}
+  #growthChart .area,#growthChart .pt,#growthChart .pt-label{opacity:1}
+  .dot{animation:none}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .hero-grid,.split,.pos-grid{grid-template-columns:1fr;gap:40px}
+  .cards{grid-template-columns:1fr}
+  .case-stats{grid-template-columns:repeat(2,1fr)}
+  section{padding:72px 0}
+  #hero{padding:120px 0 64px}
+  .foto{max-width:380px;margin:0 auto}
+}
+@media (max-width:520px){
+  .case-stats{grid-template-columns:1fr 1fr}
+  .hero-actions .btn{width:100%;justify-content:center}
+}
+
+/* focus visible */
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:10px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#hero">joão azevedo<span>.</span></a>
+    <a class="nav-cta" href="https://form.respondi.app/FagQZtEC" target="_blank" rel="noopener">Agendar reunião</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Estrategista de marketing</span>
+      <h1>Sua empresa pode vender mais com a <em>estratégia certa</em>.</h1>
+      <p class="lead">Transforme os dados da sua empresa em faturamento.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://form.respondi.app/FagQZtEC" target="_blank" rel="noopener">
+          Quero agendar uma reunião <span class="arrow">→</span>
+        </a>
+      </div>
+      <p class="hero-note">+ de R$ 20 milhões gerenciados em mídia paga</p>
+    </div>
+
+    <!-- mini-dashboard: a página demonstra o serviço -->
+    <div class="dash reveal" aria-hidden="true">
+      <div class="dash-head">
+        <span><span class="dot"></span>operação ao vivo</span>
+        <span>últimos 30 dias</span>
+      </div>
+      <div class="dash-metrics">
+        <div class="metric">
+          <span class="k">ROAS</span>
+          <div class="v" data-count="6.4" data-decimals="1">0</div>
+          <span class="d">▲ acima da meta</span>
+        </div>
+        <div class="metric">
+          <span class="k">Vendas</span>
+          <div class="v" data-count="312">0</div>
+          <span class="d">▲ +38% vs. mês anterior</span>
+        </div>
+        <div class="metric">
+          <span class="k">CPA</span>
+          <div class="v" data-count="-22" data-suffix="%">0</div>
+          <span class="d">▲ custo em queda</span>
+        </div>
+        <div class="metric">
+          <span class="k">Rastreamento</span>
+          <div class="v" data-count="98" data-suffix="%">0</div>
+          <span class="d">▲ eventos validados</span>
+        </div>
+      </div>
+      <div class="dash-spark">
+        <svg viewBox="0 0 320 60" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="spark" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="rgba(226,161,78,.35)"/>
+              <stop offset="1" stop-color="rgba(226,161,78,0)"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,50 C30,48 50,42 80,40 C110,38 130,30 160,28 C190,26 210,20 240,14 C270,9 295,8 320,4 L320,60 L0,60 Z" fill="url(#spark)"/>
+          <path d="M0,50 C30,48 50,42 80,40 C110,38 130,30 160,28 C190,26 210,20 240,14 C270,9 295,8 320,4" fill="none" stroke="#E2A14E" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEMA ============ -->
+<section id="problema">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow">O problema</span>
+      <h2>Você já investiu em tráfego e ficou no escuro?</h2>
+    </div>
+    <div class="problema-body reveal">
+      <p>Relatório cheio de métricas que não dizem nada. Resultado estagnado. Você não sabe exatamente o que está funcionando — e nem por quê.</p>
+      <p class="punch">O problema não é o tráfego. É a falta de estrutura e clareza por trás dele.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POSICIONAMENTO ============ -->
+<section id="posicionamento">
+  <div class="wrap pos-grid">
+    <!-- FOTO: troque o conteúdo deste bloco por <img src="sua-foto.jpg" alt="João Azevedo"> -->
+    <div class="foto reveal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+      <span>sua foto aqui<br>(substituir por &lt;img&gt;)</span>
+    </div>
+    <div class="pos-body reveal">
+      <span class="eyebrow">Posicionamento</span>
+      <h2>Estratégia antes de qualquer campanha.</h2>
+      <p>Tráfego pago é muito mais do que uma campanha de anúncios. É um sistema: <strong>rastreamento preciso, relatórios que fazem sentido e análises que guiam decisões.</strong></p>
+      <p>Hoje, com a experiência de mais de R$ 20 milhões gerenciados e especialização em análise de dados, growth e performance, meu objetivo é criar estratégias para escalar e-commerces que querem crescer de forma consistente e saudável.</p>
+      <div class="cred">
+        <div><span class="n">+R$ 20M</span><span class="l">gerenciados</span></div>
+        <div><span class="n">2022</span><span class="l">no mercado desde</span></div>
+        <div><span class="n">Dados</span><span class="l">no centro de tudo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ENTREGÁVEIS ============ -->
+<section id="entregaveis">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Entregáveis</span>
+      <h2>O que entra em campo pelo seu negócio:</h2>
+    </div>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M5.6 5.6a9 9 0 0 0 0 12.8M18.4 5.6a9 9 0 0 1 0 12.8M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7"/></svg></div>
+        <h3>Rastreamento completo</h3>
+        <p>Sua operação de dados configurada do zero.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 16v-5M11 16V8M16 16v-9"/></svg></div>
+        <h3>Dashboards personalizados</h3>
+        <p>Visibilidade do que está acontecendo, em tempo real, sem precisar perguntar.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg></div>
+        <h3>Gestão e operação de campanhas</h3>
+        <p>Estratégia, execução e otimização contínua nas plataformas certas.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/><path d="M8 10.5h5M10.5 8v5"/></svg></div>
+        <h3>Análises estratégicas</h3>
+        <p>Interpretação dos dados com recomendações claras para o próximo passo.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="12" rx="3"/><path d="M12 7V4M9 12h.01M15 12h.01M9.5 16h5"/></svg></div>
+        <h3>Conteúdo e automações com IA</h3>
+        <p>Aplicação de inteligência artificial em conteúdo, páginas e automações — para entregar mais resultado em menos tempo e com mais precisão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE ============ -->
+<section id="case">
+  <div class="wrap">
+    <div class="case-head reveal">
+      <span class="eyebrow">Case real</span>
+      <h2>11x de crescimento em 1 ano</h2>
+      <p class="sub">Os bastidores de um crescimento real.</p>
+    </div>
+
+    <div class="case-stats">
+      <div class="stat reveal"><span class="n" data-count="3.5" data-decimals="1" data-suffix="x">0</span><span class="l">nos primeiros 3 meses</span></div>
+      <div class="stat reveal"><span class="n" data-count="6" data-suffix="x">0</span><span class="l">patamar consistente hoje</span></div>
+      <div class="stat reveal"><span class="n" data-count="11" data-suffix="x">0</span><span class="l">recorde na Black Friday</span></div>
+      <div class="stat reveal"><span class="n" data-count="12" data-suffix=" meses">0</span><span class="l">de trabalho contínuo</span></div>
+    </div>
+
+    <div class="chart-box reveal">
+      <div class="chart-label">
+        <span>evolução do faturamento</span>
+        <span>escala relativa · 12 meses</span>
+      </div>
+      <svg id="growthChart" viewBox="0 0 720 260" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Gráfico de crescimento do faturamento ao longo de 12 meses, do patamar inicial até 11 vezes na Black Friday">
+        <defs>
+          <linearGradient id="gradArea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="rgba(226,161,78,.28)"/>
+            <stop offset="1" stop-color="rgba(226,161,78,0)"/>
+          </linearGradient>
+        </defs>
+        <!-- grid -->
+        <line class="grid" x1="40" y1="40"  x2="700" y2="40"/>
+        <line class="grid" x1="40" y1="90"  x2="700" y2="90"/>
+        <line class="grid" x1="40" y1="140" x2="700" y2="140"/>
+        <line class="grid" x1="40" y1="190" x2="700" y2="190"/>
+        <line class="axis" x1="40" y1="230" x2="700" y2="230"/>
+        <!-- área -->
+        <path class="area" d="M40,210 C90,208 130,204 170,196 C220,186 250,160 300,150 C350,140 390,138 440,128 C490,118 530,108 580,96 C615,88 640,60 668,30 L668,230 L40,230 Z"/>
+        <!-- linha -->
+        <path class="line" d="M40,210 C90,208 130,204 170,196 C220,186 250,160 300,150 C350,140 390,138 440,128 C490,118 530,108 580,96 C615,88 640,60 668,30"/>
+        <!-- pontos -->
+        <circle class="pt" cx="40"  cy="210" r="4"/>
+        <text class="pt-label" x="40" y="248" text-anchor="start">início</text>
+        <circle class="pt" cx="300" cy="150" r="4"/>
+        <text class="pt-label" x="300" y="248" text-anchor="middle">mês 3 · 3,5x</text>
+        <circle class="pt" cx="580" cy="96" r="4"/>
+        <text class="pt-label" x="580" y="248" text-anchor="middle">patamar 6x</text>
+        <circle class="pt pt-bf" cx="668" cy="30" r="5"/>
+        <text class="pt-label" x="668" y="248" text-anchor="end">Black Friday · 11x</text>
+      </svg>
+    </div>
+
+    <div class="case-body reveal">
+      <p>A empresa, do setor de móveis em madeira, chegou com potencial de sobra — mas sem estrutura de marketing.</p>
+      <p>Nos primeiros 3 meses, o faturamento mais que triplicou. Hoje, a operação sustenta um patamar consistente 6x maior que o inicial — com recorde histórico de 11x em novembro, na Black Friday.</p>
+      <p class="punch">Isso não foi sorte. Foi rastreamento, comunicação afinada, análise constante e decisões baseadas em dados.</p>
+      <div class="case-cta">
+        <a class="btn btn-ghost" href="https://form.respondi.app/FagQZtEC" target="_blank" rel="noopener">
+          Quero esse tipo de resultado para o meu negócio <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section id="final">
+  <div class="wrap">
+    <div class="reveal">
+      <h2>Sua empresa pode estar mais perto do próximo nível do que parece.</h2>
+      <p>O marketing que funcionava em 2022 não é o mesmo de 2026. Esse é um novo momento — e ele começa com a estratégia certa.</p>
+      <a class="btn btn-primary" href="https://form.respondi.app/FagQZtEC" target="_blank" rel="noopener">
+        Começar agora <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="who">© <span id="year"></span> João Azevedo · Estrategista de Marketing</span>
+    <div class="links">
+      <a href="https://www.instagram.com/o.joaoazevedo/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/5532998101272" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://form.respondi.app/FagQZtEC" target="_blank" rel="noopener">Agendar reunião</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// reveal on scroll
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.18});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// animated counters
+function animateCount(el){
+  const target = parseFloat(el.dataset.count);
+  const decimals = parseInt(el.dataset.decimals||'0');
+  const suffix = el.dataset.suffix||'';
+  const dur = 1400;
+  const start = performance.now();
+  function tick(now){
+    const p = Math.min((now-start)/dur,1);
+    const eased = 1-Math.pow(1-p,3);
+    const val = (target*eased).toFixed(decimals).replace('.',',');
+    el.textContent = val + suffix;
+    if(p<1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const ioCount = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      animateCount(e.target);
+      ioCount.unobserve(e.target);
+    }
+  });
+},{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>ioCount.observe(el));
+
+// draw chart on scroll
+const chart = document.getElementById('growthChart');
+if(chart){
+  const ioChart = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        chart.classList.add('drawn');
+        ioChart.unobserve(chart);
+      }
+    });
+  },{threshold:.4});
+  ioChart.observe(chart);
+}
+</script>
+</body>
+</html>
